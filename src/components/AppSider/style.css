@@ -1,0 +1,4 @@
+.ant-layout-sider-trigger {
+    /* overwritting antd' css */
+    background: #cceaff;
+}
