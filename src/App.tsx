@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AppHeader, AppSider } from './components';
 import { UserContextProvider } from './contexts/user';
-import { Dashboard, Landing, Login, SignUp } from './pages';
+import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp } from './pages';
 import { PrivateRoute } from './utils/PrivateRoute';
 
 const { Content } = Layout;
@@ -43,7 +43,20 @@ function App() {
                     <PrivateRoute>
                       <Dashboard />
                     </PrivateRoute>
-                  }/>
+                  } />
+
+                  <Route path='s/calendar' element={
+                    <PrivateRoute>
+                      <CalendarPage />
+                    </PrivateRoute>
+                  } />
+
+                  <Route path='s/myapplications' element={
+                    <PrivateRoute>
+                      <MyApplications />
+                    </PrivateRoute>
+                  } />
+
                 </Routes>
               </Content>
             </Layout>

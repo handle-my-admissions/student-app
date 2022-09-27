@@ -1,0 +1,15 @@
+.ApplicationDownloadPanel {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.ApplicationDownloadPanel_text {
+  margin-right: 1.3em;
+
+}
+
+.ApplicationDownloadPanel_down {
+  /* margin-left: 1em; */
+  margin-right: 0.4em;
+}
