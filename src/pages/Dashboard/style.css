@@ -1,0 +1,52 @@
+.SDashboard .ant-layout {
+    background-color: white;
+    border-radius: 0.6em;
+    box-shadow: 0px 0px 15px rgba(148, 147, 147, 0.25);
+    padding-left: 0.6em;
+}
+
+.SDashboard_TopTitle {
+    margin-top: 1.2em;
+    /* margin-left:0.6em; */
+}
+
+
+/* ============================================DASHBOARD CARD============================================== */
+.SDashboard_Card {
+    border-radius: 0.6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgb(243, 243, 243);
+    padding-top: 1.2em;
+    padding-left: 0.8em;
+    padding-bottom: 0.3em;
+    box-shadow: 1px 1px 4px -0.3px rgba(84, 84, 84, 0.15);
+    z-index: 2;
+    margin-top: 1.5em;
+    min-height: 7em;
+    min-width: 20em;
+}
+
+.SDashboard_Card_Body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 0.6em;
+}
+
+/* =======================================================DASHBOARD NOTIFICATIONS==================================== */
+.SDashboard_NotificationContainer {
+    display: flex;
+    margin-top: 1.5em;
+    flex-direction: column;
+    border-radius: 0.6em;
+    border: 1px solid rgb(243, 243, 243);
+    box-shadow: 1px 1px 4px -0.3px rgba(84, 84, 84, 0.15);
+
+}
+
+.SDashboard_NotificationContainer_Body {
+    height: 24em;
+    overflow-y: auto;
+}
