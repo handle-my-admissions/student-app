@@ -1,0 +1,9 @@
+.Application .ant-layout {
+  background-color: white;
+  border-radius: 0.6em;
+  box-shadow: 0px 0px 15px rgba(148, 147, 147, 0.25);
+  padding-left: 0.9em;
+  padding-right: 0.9em;
+  margin-top: 1.5em;
+  min-height: 95vh;
+}

@@ -1,0 +1,64 @@
+
+.FormWithSteps{
+    margin-left: 1.5em;
+    font-size: 1.2em;
+ }
+ .FormWithSteps input[type=text] {
+     width: 65vw;
+     padding: 1em;
+     margin-top: 0.6em;
+     border: none;
+     border-bottom: 1px solid grey;
+     box-sizing: border-box;
+ }
+ 
+ .FormWithSteps input[type=text]:focus,
+ .FormWithSteps input[type=number]:focus {
+     
+ }
+ 
+ /* Chrome, Safari, Edge, Opera */
+ 
+ .FormWithSteps input::-webkit-outer-spin-button, .FormWithSteps input::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+     padding: 0.6em;
+     margin-top: 0.6em;
+     border: none;
+     border-bottom: 1px solid grey;
+     box-sizing: border-box;
+ }
+ 
+ /* Firefox */
+ 
+ .FormWithSteps input[type=number] {
+     -moz-appearance: textfield;
+     padding: 0.6em;
+     margin-top: 0.6em;
+     border: none;
+     border-bottom: 1px solid grey;
+     box-sizing: border-box;
+ }
+ 
+ .Application_btn_container{
+     display: flex;
+     flex-direction: row;
+     justify-content: flex-end;
+     align-items: center;
+ }
+ .Application_btn_container input[type=submit],
+ .Application_btn_container input[type=button]{
+     margin-top: 0.7em;
+     margin-right: 0.4em;
+     padding: 0.6em 1em;
+     background-color: rgba(0, 140, 255, 0.637);
+     color: white;
+     border: none;
+     outline: none;
+     cursor: pointer;
+     border-radius: 0.2em;
+ }
+
+ .FormWithSteps .steps-action{
+      padding: 1em;
+ }
