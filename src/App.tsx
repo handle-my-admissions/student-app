@@ -1,14 +1,12 @@
 import { CalendarOutlined, FileOutlined, PieChartOutlined, ProfileOutlined, PushpinOutlined, QuestionOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { AppHeader, AppSider } from './components';
 import { ApplicationContextProvider } from './contexts/applicationContext';
 import { UserContextProvider } from './contexts/user';
-import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application, Documents, MyQueries, Notices } from './pages';
-import Profile from './pages/Profile';
-import { PrivateRoute } from './utils/PrivateRoute';
+import { Routes } from './routes';
 
 const { Content } = Layout;
 
@@ -38,62 +36,7 @@ function App() {
               <AppSider data={siderData} haveSubMenu isCollapsible />
               <Layout style={{ minHeight: '100vh' }}>
                 <Content style={{ margin: '0 4px' }}>
-                  <Routes>
-                    <Route path='/' element={<Landing />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/signup' element={<SignUp />} />
-                    <Route path='/s' element={
-                      <PrivateRoute>
-                        <Dashboard />
-                      </PrivateRoute>
-                    } />
-
-                    <Route path='s/calendar' element={
-                      <PrivateRoute>
-                        <CalendarPage />
-                      </PrivateRoute>
-                    } />
-
-                    <Route path='s/myapplications' element={
-                      <PrivateRoute>
-                        <MyApplications />
-                      </PrivateRoute>
-                    } />
-
-                    <Route path='s/myapplications/:ApplicationId'
-                      element={
-                        <PrivateRoute>
-                          <Application />
-                        </PrivateRoute>
-                      } />
-
-                    <Route path='s/docs' element={
-                      <PrivateRoute>
-                        <Documents />
-                      </PrivateRoute>
-                    } />
-
-                    <Route path='s/myqueries'
-                      element={
-                        <PrivateRoute>
-                          <MyQueries />
-                        </PrivateRoute>
-                      } />
-
-                    <Route path='s/notices'
-                      element={
-                        <PrivateRoute>
-                          <Notices />
-                        </PrivateRoute>
-                      } />
-
-                    <Route path='s/profile'
-                      element={
-                        <PrivateRoute>
-                          <Profile />
-                        </PrivateRoute>
-                      } />
-                  </Routes>
+                  <Routes />
                 </Content>
               </Layout>
             </Layout>
