@@ -44,7 +44,7 @@ export default function ProfileEdit() {
         .then()
         .catch();
 
-      let profileFormElement = document.getElementById('ProfileForm') as any;
+      const profileFormElement = document.getElementById('ProfileForm') as any;
       profileFormElement.reset();
     }
   };

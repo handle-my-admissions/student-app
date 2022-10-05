@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /**
  * renders out the card that will have ->
  *              TITLE , SUBTITLE (e.g 2 in progress | 3 completed), NEXT BUTTON
@@ -6,6 +5,7 @@
  *
  * Written By: Tejas ladhani
  */
+import React from 'react';
 import './style.css';
 import { Typography } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
@@ -24,8 +24,8 @@ export default function DashboardCard({ title, subSpan }: dashboardCardPropType)
       <div className="SDashboard_Card_Body">
         <div className="SDashboard_Card_Bodytext">
           <Typography.Text>
-            {subSpan.map((item) => (
-              <span>{`${item} | `}</span>
+            {subSpan.map((item, index) => (
+              <span key={index}>{`${item} | `}</span>
             ))}
           </Typography.Text>
         </div>

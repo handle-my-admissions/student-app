@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-bind */
 import { Button, message } from 'antd';
 import React, { useContext } from 'react';
 import axios from 'axios';

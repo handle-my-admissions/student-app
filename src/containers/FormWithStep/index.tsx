@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import './style.css';
 import {
@@ -149,7 +147,7 @@ export default function FormWithStep({ application }: { application: any }) {
               {/* Personal Details */}
               {current === 0
                 && PersonalDetails.map((item: any, index: number) => (
-                  <div className="personalDetails">
+                  <div className="personalDetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -201,7 +199,7 @@ export default function FormWithStep({ application }: { application: any }) {
               {/* School Details */}
               {current === 1
                 && SchoolDetails.map((item: any, index: number) => (
-                  <div className="schooldetails">
+                  <div className="schooldetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -229,7 +227,7 @@ export default function FormWithStep({ application }: { application: any }) {
               {/* Entrance Exam */}
               {current === 2
                 && EntranceExam.map((item: any, index: number) => (
-                  <div className="entranceExamDetails">
+                  <div className="entranceExamDetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -282,7 +280,7 @@ export default function FormWithStep({ application }: { application: any }) {
               {/* Education Details */}
               {current === 3
                 && EdDetails.map((item: any, index: number) => (
-                  <div>
+                  <div key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -310,7 +308,7 @@ export default function FormWithStep({ application }: { application: any }) {
               {/* Document Upload Details */}
               {current === 4
                 && DocumentUploads.map((item: any, index: number) => (
-                  <div>
+                  <div key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>

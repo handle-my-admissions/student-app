@@ -34,7 +34,6 @@ export default function Documents() {
 
   return (
     <div className="Documents" style={{ marginTop: '1.5em' }}>
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <Dragger {...props}>
         <p className="ant-upload-drag-icon">
           <InboxOutlined />

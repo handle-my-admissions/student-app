@@ -4,9 +4,10 @@ type applicationContextType = {
   applicationDetails: any,
   setApplicationDetails: React.Dispatch<React.SetStateAction<any[]>>,
 }
+
 export const ApplicationContext = createContext<applicationContextType>({
   applicationDetails: [{}],
-  setApplicationDetails: (value: any) => { },
+  setApplicationDetails: (value: any) => {/** */ },
 });
 
 export function ApplicationContextProvider({ children }: { children: React.ReactNode }) {

@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 /**
  * -TEJAS LADHANI
  */
@@ -27,13 +26,13 @@ const getTodaysDate = () => {
    *      used as timestamp in data that is being passed via API call, to the database.
    */
 
-  let today = new Date();
+  const today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
   const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
   const yyyy = today.getFullYear();
 
- return `${dd}-${mm}-${yyyy}`;
-  
+  return `${dd}-${mm}-${yyyy}`;
+
 };
 
 type queryListStateType = {
@@ -130,8 +129,8 @@ export default function MyQueries() {
          * As soon as the API CALL is SUCCESSFUL,
          * reset the CreateQuery Form => set the fields to empty state.
         */
-        let profileFormElement = document.getElementById('ProfileForm') as HTMLFormElement
-        if(profileFormElement) profileFormElement.reset();
+        const profileFormElement = document.getElementById('ProfileForm') as HTMLFormElement
+        if (profileFormElement) profileFormElement.reset();
 
         /** changing the CountUpdate state,
          *  just to remount component => re-calling of api => updated query list.
@@ -204,7 +203,7 @@ export default function MyQueries() {
                     {
                       QueryList !== undefined
                         ? QueryList.map(
-                          (query) => <QueryCard queryCardData={query} />,
+                          (query, index) => <QueryCard queryCardData={query} key={index} />,
                         )
                         : <Spin />
                     }

@@ -1,7 +1,6 @@
 import './style.css';
-
+import React, { useContext } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
 import { UserContext } from '../../contexts/user';
 
 

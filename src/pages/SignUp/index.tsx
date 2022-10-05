@@ -40,7 +40,7 @@ export default function SignUp() {
     setIsModalVisible(false);
   };
 
-  const onFinish = (values:any) => {
+  const onFinish = (values: any) => {
     /**
      * Creates a new user in the user pool.
      */
@@ -60,7 +60,7 @@ export default function SignUp() {
     /**
      * Attributes are attached to the user identity.
      */
-    const attributeList:any[] = [];
+    const attributeList: any[] = [];
     ['name', 'email', 'birthdate', 'gender'].forEach((attribute) => {
       attributeList.push({
         Name: attribute,

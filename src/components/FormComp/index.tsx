@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /**
  * TODO: Dynamic content
  * TODO: Make it reusable
@@ -31,7 +30,6 @@ export default function FormComp({
 }: formCompPropType) {
   const [form, setForm] = useState(formState);
 
-  // eslint-disable-next-line no-unused-vars
   const handleFormChange = (event: React.FormEvent<any>) => {
     setForm({
       ...form,
@@ -42,8 +40,9 @@ export default function FormComp({
 
     <Form onFinish={apiFunc} id="ProfileForm">
       {
-        data.map((item: any) => (
+        data.map((item: any,index:number) => (
           <Form.Item
+            key={index}
             name={item.name}
             label={item.label}
             rules={item.rules}
@@ -60,7 +59,7 @@ export default function FormComp({
               : (
                 <Select placeholder="select your gender" value={form.Gender} onChange={handleFormChange}>
                   {
-                    item.options.map((i: any) => <Option value={i}>{i}</Option>)
+                    item.options.map((i: any,index:number) => <Option key={index} value={i}>{i}</Option>)
                   }
                 </Select>
               )}

@@ -6,7 +6,6 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/user';
 import './style.css';
-import { AppHeader } from '../../components';
 
 export default function Login() {
     const navigate = useNavigate();

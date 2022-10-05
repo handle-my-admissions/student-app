@@ -14,7 +14,6 @@ export default function Application() {
 
   useEffect(() => {
     //! check this logic
-    // eslint-disable-next-line array-callback-return
     applicationDetails.map((item: any) => {
       console.log('hello')
       console.log(item)

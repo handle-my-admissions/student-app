@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /**
  * SUBCARD:
  * tiny Cards , that will be embedded in the containers for example ApplicationCard

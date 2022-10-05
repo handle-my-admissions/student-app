@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /*
 This is query card container,
 accepts querydata and renders a card with data.
@@ -23,7 +22,7 @@ type queryCardPropType = {
   }
 }
 
-export default function QueryCard({ queryCardData }:queryCardPropType) {
+export default function QueryCard({ queryCardData }: queryCardPropType) {
   console.log('Hello');
   console.log(queryCardData);
   return (

@@ -11,7 +11,6 @@
 import React, { useContext, useState } from 'react';
 import { NotificationOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import type { MenuProps } from 'antd';
 import { Layout, Menu } from 'antd';
 import './style.css';
 import { UserContext } from '../../contexts/user';
@@ -62,7 +61,7 @@ function AppSider({ data, haveSubMenu, isCollapsible }:appSiderPropType) {
             <Menu.Item key="12">Notice Generated !</Menu.Item>
           </SubMenu>
         ) : (
-          // eslint-disable-next-line react/jsx-no-useless-fragment
+
           <></>
         )}
 

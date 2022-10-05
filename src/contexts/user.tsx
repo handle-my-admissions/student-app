@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
 import Pool from '../UserPool';
@@ -18,9 +17,9 @@ type userContextType = {
 
 export const UserContext = React.createContext<userContextType>({
   user: undefined,
-  setUser: (user: any) => {},
-  authenticate: (Username: string, Password: string) => new Promise((resolve, reject) => {}),
-  logout: () => {},
+  setUser: (user: any) => {/** */},
+  authenticate: (Username: string, Password: string) => new Promise((resolve, reject) => {/** */}),
+  logout: () => {/** */},
 });
 
 const authenticate = async (Username:string, Password:string) => new Promise((resolve, reject) => {

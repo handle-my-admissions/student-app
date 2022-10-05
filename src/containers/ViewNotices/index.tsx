@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect, useContext } from 'react';
 import {
   Skeleton, Card, Row, Col, Spin,

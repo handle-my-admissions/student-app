@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from 'antd';
 import { Link } from 'react-router-dom';
 import {
@@ -25,8 +26,8 @@ export default function ApplicationCard({ title, subCardData }: applicationCardP
           </Link>
         </div>
         <div className="ApplicationCard_Details_SubCards_Container">
-          {subCardData.map((data) => (
-            <SubCard data={data} />
+          {subCardData.map((data, index) => (
+            <SubCard data={data} key={index} />
           ))}
         </div>
 

@@ -1,4 +1,3 @@
-/* eslint-disable eqeqeq */
 import {
   Row, Col, Divider, Typography, Tag, Avatar, Spin, message,
 } from 'antd';

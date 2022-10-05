@@ -96,7 +96,7 @@ export default function MyApplications() {
             </div>
           </Col>
           <Col span={24}>
-            <Tabs defaultActiveKey="1" onChange={() => { }}>
+            <Tabs defaultActiveKey="1" onChange={() => {/** */ }}>
               <TabPane
                 tab={`${applicationCardDetails.length} Applications(s) open`}
                 key="1"

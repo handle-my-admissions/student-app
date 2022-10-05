@@ -1,9 +1,11 @@
+import { NodeElement } from "rc-tree/lib/interface";
+import React from "react";
 import { Navigate, useRoutes } from "react-router-dom";
 import { Application, CalendarPage, Dashboard, Documents, Landing, Login, MyApplications, MyQueries, Notices, SignUp } from "../pages";
 import Profile from "../pages/Profile";
 import { PrivateRoute } from "../utils/PrivateRoute";
 
-function routeCheckWrapper(element: any) {
+function routeCheckWrapper(element: NodeElement) {
     return <PrivateRoute>
         {element}
     </PrivateRoute>

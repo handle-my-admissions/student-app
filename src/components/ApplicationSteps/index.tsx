@@ -10,7 +10,7 @@ export default function ApplicationSteps() {
     <Steps
       type="navigation"
       current={1}
-      onChange={() => {}}
+      onChange={() => {/** */}}
       size="small"
       className="ApplicationSteps"
     >
