@@ -6,7 +6,7 @@ import './App.css';
 import { AppHeader, AppSider } from './components';
 import { ApplicationContextProvider } from './contexts/applicationContext';
 import { UserContextProvider } from './contexts/user';
-import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application, Documents, MyQueries } from './pages';
+import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application, Documents, MyQueries, Notices } from './pages';
 import { PrivateRoute } from './utils/PrivateRoute';
 
 const { Content } = Layout;
@@ -21,7 +21,7 @@ const siderData = [
   { title: 'Documents', linkTo: '/s/docs', icon: <FileOutlined /> },
   { title: 'Calendar', linkTo: '/s/calendar', icon: <CalendarOutlined /> },
   { title: 'My Queries', linkTo: '/s/myqueries', icon: <QuestionOutlined /> },
-  { title: 'Notices', linkTo: '/s/Notices', icon: <PushpinOutlined /> },
+  { title: 'Notices', linkTo: '/s/notices', icon: <PushpinOutlined /> },
   { title: 'Profile', linkTo: '/s/Profile', icon: <UserOutlined /> },
 ];
 
@@ -79,6 +79,12 @@ function App() {
                         </PrivateRoute>
                       } />
 
+                    <Route path='s/notices'
+                      element={
+                        <PrivateRoute>
+                          <Notices />
+                        </PrivateRoute>
+                      } />
 
                   </Routes>
                 </Content>
