@@ -1,0 +1,28 @@
+.myquery .ant-layout {
+  background-color: white;
+  border-radius: 0.6em;
+  box-shadow: 0px 0px 15px rgba(148, 147, 147, 0.25);
+  padding-left: 0.9em;
+  margin-top: 1.0em;
+}
+
+.myquery_TopTitle {
+  margin-top: 1.3em;
+  margin-bottom: 0em;
+}
+
+
+#createquery {
+  background-color: rgb(31, 242, 161);
+  border-color: rgb(31, 242, 161);
+  color: black;
+}
+
+.querycard {
+  margin-top: 1.0em;
+  margin-bottom: 1.0em;
+}
+
+.ant-card {
+  border-radius: 1em;
+}
