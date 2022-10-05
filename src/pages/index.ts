@@ -6,3 +6,4 @@ export { default as CalendarPage } from './CalendarPage';
 export { default as MyApplications } from './MyApplications';
 export { default as Application } from './Application';
 export { default as Documents } from './Documents';
+export { default as MyQueries } from './MyQueries';

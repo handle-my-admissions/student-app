@@ -6,7 +6,7 @@ import './App.css';
 import { AppHeader, AppSider } from './components';
 import { ApplicationContextProvider } from './contexts/applicationContext';
 import { UserContextProvider } from './contexts/user';
-import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application, Documents } from './pages';
+import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application, Documents, MyQueries } from './pages';
 import { PrivateRoute } from './utils/PrivateRoute';
 
 const { Content } = Layout;
@@ -70,7 +70,15 @@ function App() {
                       <PrivateRoute>
                         <Documents />
                       </PrivateRoute>
-                    }/>
+                    } />
+
+                    <Route path='s/myqueries'
+                      element={
+                        <PrivateRoute>
+                          <MyQueries />
+                        </PrivateRoute>
+                      } />
+
 
                   </Routes>
                 </Content>
