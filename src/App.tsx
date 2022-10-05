@@ -4,8 +4,9 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AppHeader, AppSider } from './components';
+import { ApplicationContextProvider } from './contexts/applicationContext';
 import { UserContextProvider } from './contexts/user';
-import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp } from './pages';
+import { CalendarPage, Dashboard, Landing, Login, MyApplications, SignUp, Application } from './pages';
 import { PrivateRoute } from './utils/PrivateRoute';
 
 const { Content } = Layout;
@@ -28,43 +29,52 @@ function App() {
   return (
     <BrowserRouter basename="/ap-student">
       <UserContextProvider>
-        <Layout style={{ minHeight: '100vh' }}>
-          <AppHeader />
+        <ApplicationContextProvider>
+          <Layout style={{ minHeight: '100vh' }}>
+            <AppHeader />
 
-          <Layout className="site-layout">
-            <AppSider data={siderData} haveSubMenu isCollapsible />
-            <Layout style={{ minHeight: '100vh' }}>
-              <Content style={{ margin: '0 4px' }}>
-                <Routes>
-                  <Route path='/' element={<Landing />} />
-                  <Route path='/login' element={<Login />} />
-                  <Route path='/signup' element={<SignUp />} />
-                  <Route path='/s' element={
-                    <PrivateRoute>
-                      <Dashboard />
-                    </PrivateRoute>
-                  } />
+            <Layout className="site-layout">
+              <AppSider data={siderData} haveSubMenu isCollapsible />
+              <Layout style={{ minHeight: '100vh' }}>
+                <Content style={{ margin: '0 4px' }}>
+                  <Routes>
+                    <Route path='/' element={<Landing />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/s' element={
+                      <PrivateRoute>
+                        <Dashboard />
+                      </PrivateRoute>
+                    } />
 
-                  <Route path='s/calendar' element={
-                    <PrivateRoute>
-                      <CalendarPage />
-                    </PrivateRoute>
-                  } />
+                    <Route path='s/calendar' element={
+                      <PrivateRoute>
+                        <CalendarPage />
+                      </PrivateRoute>
+                    } />
 
-                  <Route path='s/myapplications' element={
-                    <PrivateRoute>
-                      <MyApplications />
-                    </PrivateRoute>
-                  } />
+                    <Route path='s/myapplications' element={
+                      <PrivateRoute>
+                        <MyApplications />
+                      </PrivateRoute>
+                    } />
 
-                </Routes>
-              </Content>
+                    <Route path='s/myapplications/:ApplicationId'
+                      element={
+                        <PrivateRoute>
+                          <Application />
+                        </PrivateRoute>
+                      } />
+
+                  </Routes>
+                </Content>
+              </Layout>
             </Layout>
           </Layout>
-        </Layout>
 
-
+        </ApplicationContextProvider>
       </UserContextProvider>
+
     </BrowserRouter >
   );
 }
