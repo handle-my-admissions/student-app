@@ -40,7 +40,7 @@ That's pretty easy. To ensure that you are able to install everything properly, 
 We will first start with setting up the Local Project Environment:
 
 ```sh
-git clone https://github.com/admission-portal/student.git
+git clone https://github.com/admission-portal/student-app.git
 ```
 
 ```sh
