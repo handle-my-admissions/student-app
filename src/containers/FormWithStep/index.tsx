@@ -82,7 +82,7 @@ export default function FormWithStep ({ application }: { application: any }): JS
   const getSavedData = (): void => {
     const config = {
       method: 'get',
-      url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/Get_Submitted_Applications?id=${ApplicationID}_${user.idToken.payload.email}`,
+      url: `${process.env.REACT_APP_API_BASE_URL}/Get_Submitted_Applications?id=${ApplicationID}_${user.idToken.payload.email}`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
         'Content-Type': 'application/json'
@@ -112,7 +112,7 @@ export default function FormWithStep ({ application }: { application: any }): JS
 
     const config = {
       method: 'put',
-      url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/putapplication',
+      url: `${process.env.REACT_APP_API_BASE_URL}/putapplication`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
         'Content-Type': 'application/json'

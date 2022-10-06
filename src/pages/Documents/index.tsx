@@ -22,7 +22,7 @@ export default function Documents (): JSX.Element {
     },
     multiple: false,
     action:
-      'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentupload',
+      `${process.env.REACT_APP_API_BASE_URL}/studentupload`,
 
     onChange (info: any) {
       console.log(info)

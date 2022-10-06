@@ -39,7 +39,7 @@ export default function ProfileEdit (): JSX.Element {
         redirect: 'follow'
       }
 
-      fetch('https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items', requestOptions)
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/items`, requestOptions)
         .then(async (response) => await response.text())
         .then()
         .catch()

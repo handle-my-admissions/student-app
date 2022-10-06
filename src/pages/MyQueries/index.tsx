@@ -112,7 +112,7 @@ export default function MyQueries (): JSX.Element {
 
     const config = {
       method: 'put',
-      url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries',
+      url: `${process.env.REACT_APP_API_BASE_URL}/studentqueries`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
         'Content-Type': 'application/json'
@@ -150,7 +150,7 @@ export default function MyQueries (): JSX.Element {
      */
     const config = {
       method: 'get',
-      url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail}`,
+      url: `${process.env.REACT_APP_API_BASE_URL}/studentqueries?email=${useremail}`,
       headers: {
         Authorization: user.idToken.jwtToken
       }

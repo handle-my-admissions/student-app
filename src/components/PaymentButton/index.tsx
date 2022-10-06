@@ -60,7 +60,7 @@ export default function PaymentButton ({
 
     const config = {
       method: 'post',
-      url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/payment',
+      url: `${process.env.REACT_APP_API_BASE_URL}/payment`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken} `,
         'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ export default function PaymentButton ({
 
   async function displayRazorpay (): Promise<any> {
     const res = await loadScript(
-      'https://checkout.razorpay.com/v1/checkout.js'
+      `${process.env.REACT_APP_RAZORPAY_SCRIPT_END_POINT}`
     )
 
     if (!res) {
@@ -91,7 +91,7 @@ export default function PaymentButton ({
     // !order id is not getting saved in DB (but getting in RAZORPAY db)
     const odi = sessionStorage.getItem('order_id')
     const options = {
-      key: isDevEnvironment ? 'rzp_test_NRrhuDEU5IeRQx' : 'PRODUCTION_KEY',
+      key: isDevEnvironment ? `${process.env.REACT_APP_RAZORPAY_DEV_KEY}` : `${process.env.REACT_APP_RAZORPAY_DEV_KEY}`,
       currency: 'INR',
       amount: amount * 100,
       order_id: getOrderId(amount, applicationId, UserMetaData.email),

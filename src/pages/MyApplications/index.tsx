@@ -57,7 +57,7 @@ export default function MyApplications (): JSX.Element {
   useEffect(() => {
     const config = {
       method: 'get',
-      url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/applications',
+      url: `${process.env.REACT_APP_API_BASE_URL}/applications`,
       headers: {
         Authorization: user.idToken.jwtToken
       }
