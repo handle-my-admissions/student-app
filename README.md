@@ -10,18 +10,18 @@
 ## 🎊 student
 "student" is an application that severs "applicant" users of Handle My Admission.
 
-Note: This repository is the TypeScript version of the the Old Code base (https://github.com/admission-portal/ap-student) which is now being deprecated, and will not be maintained further.
+Note: This repository is the TypeScript version of the Old Codebase (https://github.com/admission-portal/ap-student) which is now being deprecated, and will not be maintained further.
 
 ## 💥 Introduction to Handle My Admission
 
-Handle My Admission is a solution which provides an end-to-end platform for institutions to manage their admission process , as well as it acts as an on-stop solution for high school students to manage their college applications.
+Handle My Admission is a solution that provides an end-to-end platform for institutions to manage their admission process, as well as acts as a one-stop solution for high school students to manage their college applications.
 
 It started with the idea to provide facilities to only one university, but now it’s pivoting towards SAAS.
 
 
 ## 💡 Why did we build this?
 
-The very first reason was to reduce the costs of the solutions that our university was using. Later, we realized that there is no single SAAS platform for admission, where universities can post their openings and applicants can apply through a single platform, because each university currently has their own portal, making it difficult to track your application as a student when applying to many universities and openings.
+The very first reason was to reduce the costs of the solutions that our university was using. Later, we realized that there is no single SAAS platform for admission, where universities can post their openings and applicants can apply through a single platform, because each university currently has its own portal, making it difficult to track your application as a student when using too many universities and openings.
 
 ## 🥁 Features
 
@@ -67,7 +67,7 @@ npm run lint
 NOTE:
 - You need to have the ```UserPoolId``` and ```client id```. Go to AWS > Cognito > Manage pools and users > clients or else contact any of the maintainers.Once you have it, Save that into ```.env```:
 - for REACT_APP_API_BASE_URL , go to AWS PORTAL > API GATEWAY > DEPLOYMENTS > STAGES, copy the url from there, or , else, contact the maintainer to get started with it.
-- Create an app in razorpay to have the key or else, contact the mainter(s).
+- Create an app in razorpay to have the key or else, contact the maintainer(s).
 
 ```txt
 REACT_APP_API_BASE_URL=XXXXXXXXXXXX
@@ -92,7 +92,7 @@ Learn more about [Eslint](https://eslint.org/)
 Running on some other Node version ? we recommend you to check out this amazing tool : [NVM](https://github.com/nvm-sh/nvm)
 
 ## 🧰 Tools & technologies used ?
-There are plentty of them 🎊,
+There are plenty of them 🎊,
 - ReactJS
 - TypeScript
 - Ant-Design
@@ -148,7 +148,7 @@ Inside /src:
 </details>
 
 ## ✌ Code Of Conduct
-we do like to follow code of coduct, and, we except same from you. please refer: [CODE OF CONDUCT](/Code%20of%20Conduct.md)
+We like to follow a code of conduct and expect the same from you. please refer: [CODE OF CONDUCT](/Code%20of%20Conduct.md)
 
 ## 📜 LICENSE
 
