@@ -1,27 +1,27 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Layout, Typography } from 'antd';
-import { useLocation } from 'react-router-dom';
-import { FormWithStep } from '../../containers';
-import './style.css';
-import { ApplicationContext } from '../../contexts/applicationContext';
+import React, { useContext, useEffect, useState } from 'react'
+import { Layout, Typography } from 'antd'
+import { useLocation } from 'react-router-dom'
+import { FormWithStep } from '../../containers'
+import './style.css'
+import { ApplicationContext } from '../../contexts/applicationContext'
 
-export default function Application() {
-  const location = useLocation();
-  const { applicationDetails } = useContext(ApplicationContext);
-  const [finalData, setFinalData] = useState();
+const Application = (): JSX.Element => {
+  const location = useLocation()
+  const { applicationDetails } = useContext(ApplicationContext)
+  const [finalData, setFinalData] = useState()
 
-  const id = location.pathname.split('/')[3];
+  const id = location.pathname.split('/')[3]
 
   useEffect(() => {
     //! check this logic
-    applicationDetails.map((item: any) => {
+    applicationDetails.forEach((item: any) => {
       console.log('hello')
       console.log(item)
       if (item.ApplicationID === id && item.ApplicationID !== undefined) {
-        setFinalData(item);
+        setFinalData(item)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <div className="Application">
@@ -30,5 +30,7 @@ export default function Application() {
         {finalData !== undefined && <FormWithStep application={finalData} />}
       </Layout>
     </div>
-  );
+  )
 }
+
+export default Application

@@ -1,10 +1,10 @@
-import React from 'react';
-import './style.css';
-import { Typography } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
+import React from 'react'
+import './style.css'
+import { Typography } from 'antd'
+import { DownloadOutlined } from '@ant-design/icons'
 
-export default function ApplicationDownloadPanel() {
-  const data = [{ text: 'Application Print' }, { text: 'Payment Receipt' }];
+export default function ApplicationDownloadPanel (): JSX.Element {
+  const data = [{ text: 'Application Print' }, { text: 'Payment Receipt' }]
 
   return (
     <div className="ApplicationDownloadPanel">
@@ -19,5 +19,5 @@ export default function ApplicationDownloadPanel() {
         </>
       ))}
     </div>
-  );
+  )
 }

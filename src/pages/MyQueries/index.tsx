@@ -2,94 +2,92 @@
  * -TEJAS LADHANI
  */
 
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react'
 import {
-  Layout, Row, Tabs, Col, Modal, Typography, Button, Spin,
-} from 'antd';
-import { PlusCircleOutlined } from '@ant-design/icons';
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
-import { QueryCard } from '../../containers';
-import { FormComp } from '../../components';
-import data from './ModalConfig';
+  Layout, Row, Tabs, Col, Modal, Typography, Button, Spin
+} from 'antd'
+import { PlusCircleOutlined } from '@ant-design/icons'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
+import { QueryCard } from '../../containers'
+import { FormComp } from '../../components'
+import data from './ModalConfig'
 
-import './style.css';
-import { UserContext } from '../../contexts/user';
+import './style.css'
+import { UserContext } from '../../contexts/user'
 
-const { TabPane } = Tabs;
-let tabkey = 0;
+const { TabPane } = Tabs
+let tabkey = 0
 
-const getTodaysDate = () => {
+const getTodaysDate = (): string => {
   /**
    * *Helper Funtion.
    * FUnction to get to current time =>
    *      used as timestamp in data that is being passed via API call, to the database.
    */
 
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
-  const yyyy = today.getFullYear();
+  const today = new Date()
+  const dd = String(today.getDate()).padStart(2, '0')
+  const mm = String(today.getMonth() + 1).padStart(2, '0') // January is 0!
+  const yyyy = today.getFullYear()
 
-  return `${dd}-${mm}-${yyyy}`;
+  return `${dd}-${mm}-${yyyy}`
+}
 
-};
-
-type queryListStateType = {
-  subject: string,
+type queryListStateType = Array<{
+  subject: string
   querystatus: {
-    keyboardtype: any,
-    tag: any,
+    keyboardtype: any
+    tag: any
     status: any
-  },
-  querydate: any,
-  querytime: any,
-  queryid: string,
-  querydesc: string,
-}[]
+  }
+  querydate: any
+  querytime: any
+  queryid: string
+  querydesc: string
+}>
 
-
-export default function MyQueries() {
-  const { user } = useContext(UserContext);
+export default function MyQueries (): JSX.Element {
+  const { user } = useContext(UserContext)
   // state to maintain the list of all the queries receiving after the API CALL.
-  const [QueryList, setQueryList] = useState<queryListStateType>();
+  const [QueryList, setQueryList] = useState<queryListStateType>()
 
   /**
    * temporary state
    *            to have REMOUNTING of the component so that,
    *            on re-mounting the useEffect will be executed => that will execute the API call.
    */
-  const [countUpdate, setcountUpdate] = useState(0);
+  const [countUpdate, setcountUpdate] = useState(0)
 
   /**
    * state to control the visibility of the MODAL.
    * MODAL is used to submit/create the query.
    */
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false)
 
-  const showModal = () => {
+  const showModal = (): void => {
     // sets the modal's state to ON => MODAL visible.
-    setIsModalVisible(true);
-  };
+    setIsModalVisible(true)
+  }
 
-  const handleOk = () => {
+  const handleOk = (): void => {
     // handles the  behavior of onClick of OK button of createQuery Modal.
     // sets he modal's state to false => modal not visible.
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     // handles the  behavior of onClick of X(CANCEL) button of createQuery Modal.
     // sets he modal's state to false => modal not visible.
-    setIsModalVisible(false);
-  };
+    setIsModalVisible(false)
+  }
 
-  const useremail = user.idToken.payload.email;
+  const useremail = user.idToken.payload.email
 
   const onCreateQuery = (val: {
-    subject: string,
+    subject: string
     description: string
-  }) => {
+  }): void => {
     /**
      * Being called on OnSubmit of the Create Query Form.
      * Function is passed as prop to {FormComp} component.
@@ -102,48 +100,48 @@ export default function MyQueries() {
         querystatus: {
           keyboardtype: 'danger',
           tag: 'UnSolved',
-          status: 0,
+          status: 0
         },
         subject: val.subject,
         assignee: 'Alex',
         querytimestamp: new Date().toLocaleTimeString(),
         querydesc: val.description,
-        queryid: uuidv4(),
-      },
-    });
+        queryid: uuidv4()
+      }
+    })
 
     const config = {
       method: 'put',
       url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries',
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      data: queryData,
-    };
+      data: queryData
+    }
 
     axios(config)
       .then((response) => {
-        console.log(response);
+        console.log(response)
         /**
          * As soon as the API CALL is SUCCESSFUL,
          * reset the CreateQuery Form => set the fields to empty state.
         */
         const profileFormElement = document.getElementById('ProfileForm') as HTMLFormElement
-        if (profileFormElement) profileFormElement.reset();
+        if (profileFormElement) profileFormElement.reset()
 
         /** changing the CountUpdate state,
          *  just to remount component => re-calling of api => updated query list.
         */
-        setcountUpdate(countUpdate + 1);
+        setcountUpdate(countUpdate + 1)
 
         // After the successful submission, we need to close the modal that is being popped up.
-        handleCancel();
+        handleCancel()
       })
       .catch((error) => {
-        console.log(error);
-      });
-  };
+        console.log(error)
+      })
+  }
 
   useEffect(() => {
     /**
@@ -154,19 +152,19 @@ export default function MyQueries() {
       method: 'get',
       url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/studentqueries?email=${useremail}`,
       headers: {
-        Authorization: user.idToken.jwtToken,
-      },
-    };
+        Authorization: user.idToken.jwtToken
+      }
+    }
 
     axios(config)
       .then((response) => {
         // Received the List of queries , now storing this list in QueryList state.
-        setQueryList(response.data.response.queries);
+        setQueryList(response.data.response.queries)
       })
       .catch((error) => {
-        console.log(error);
-      });
-  }, [countUpdate]);
+        console.log(error)
+      })
+  }, [countUpdate])
 
   /**
    * COMPONENT : createQuery Button
@@ -182,7 +180,7 @@ export default function MyQueries() {
     >
       Create a Query
     </Button>
-  );
+  )
 
   return (
     <div className="myquery">
@@ -203,7 +201,7 @@ export default function MyQueries() {
                     {
                       QueryList !== undefined
                         ? QueryList.map(
-                          (query, index) => <QueryCard queryCardData={query} key={index} />,
+                          (query, index) => <QueryCard queryCardData={query} key={index} />
                         )
                         : <Spin />
                     }
@@ -219,7 +217,7 @@ export default function MyQueries() {
                         ? QueryList.map(
                           (query) => (
                             query.querystatus.status ? <QueryCard queryCardData={query} /> : <div />
-                          ),
+                          )
                         )
                         : <div />
                     }
@@ -235,7 +233,7 @@ export default function MyQueries() {
                         ? QueryList.map(
                           (query) => (
                             query.querystatus.status ? null : <QueryCard queryCardData={query} />
-                          ),
+                          )
                         )
                         : <div />
                     }
@@ -255,11 +253,11 @@ export default function MyQueries() {
           apiFunc={onCreateQuery}
           formState={{
             Subject: '',
-            Description: '',
+            Description: ''
           }}
         />
       </Modal>
 
     </div>
-  );
+  )
 }

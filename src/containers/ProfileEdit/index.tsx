@@ -5,22 +5,22 @@
  * Written By: Tejas Ladhani
  */
 
-import { Row, Col, Typography } from 'antd';
-import React, { useContext } from 'react';
-import { FormComp } from '../../components';
-import { UserContext } from '../../contexts/user';
-import ProfilePicCard from '../ProfilePicCard/index';
+import { Row, Col, Typography } from 'antd'
+import React, { useContext } from 'react'
+import { FormComp } from '../../components'
+import { UserContext } from '../../contexts/user'
+import ProfilePicCard from '../ProfilePicCard/index'
 
-const { Title } = Typography;
+const { Title } = Typography
 
-export default function ProfileEdit() {
-  const { user } = useContext(UserContext);
-  const apiFunc = (val: any) => {
+export default function ProfileEdit (): JSX.Element {
+  const { user } = useContext(UserContext)
+  const apiFunc = (val: any): void => {
     // console.log(val);
     if (user) {
-      const myHeaders = new Headers();
-      myHeaders.append('Authorization', `Bearer ${user.idToken.jwtToken}`);
-      myHeaders.append('Content-Type', 'application/json');
+      const myHeaders = new Headers()
+      myHeaders.append('Authorization', `Bearer ${user.idToken.jwtToken}`)
+      myHeaders.append('Content-Type', 'application/json')
 
       const raw = JSON.stringify({
         email: user.idToken.payload.email,
@@ -29,25 +29,25 @@ export default function ProfileEdit() {
         gender: val.gender,
         name: val.firstname,
         lastname: val.lastname,
-        phone: val.phone,
-      });
+        phone: val.phone
+      })
 
-      const requestOptions = {
+      const requestOptions: RequestInit = {
         method: 'PUT',
         headers: myHeaders,
         body: raw,
-        redirect: 'follow',
-      } as RequestInit;
+        redirect: 'follow'
+      }
 
       fetch('https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items', requestOptions)
-        .then((response) => response.text())
+        .then(async (response) => await response.text())
         .then()
-        .catch();
+        .catch()
 
-      const profileFormElement = document.getElementById('ProfileForm') as any;
-      profileFormElement.reset();
+      const profileFormElement = document.getElementById('ProfileForm') as any
+      profileFormElement.reset()
     }
-  };
+  }
   const data = [
     {
       name: 'firstname',
@@ -55,14 +55,14 @@ export default function ProfileEdit() {
       rules: [
         {
           type: 'string',
-          message: 'Must not contain numbers and special characters',
+          message: 'Must not contain numbers and special characters'
         },
         {
           required: true,
-          message: 'Please input your name!',
-        },
+          message: 'Please input your name!'
+        }
       ],
-      haveOption: false,
+      haveOption: false
 
     },
     {
@@ -71,14 +71,14 @@ export default function ProfileEdit() {
       rules: [
         {
           type: 'string',
-          message: 'Must not contain numbers and special characters',
+          message: 'Must not contain numbers and special characters'
         },
         {
           required: true,
-          message: 'Please input your name!',
-        },
+          message: 'Please input your name!'
+        }
       ],
-      haveOption: false,
+      haveOption: false
     },
     {
       name: 'dateofbirth',
@@ -86,14 +86,14 @@ export default function ProfileEdit() {
       rules: [
         {
           type: 'date',
-          message: 'Enter the DOB',
+          message: 'Enter the DOB'
         },
         {
           required: false,
-          message: 'DOb is required!',
-        },
+          message: 'DOb is required!'
+        }
       ],
-      haveOption: false,
+      haveOption: false
     },
     {
       name: 'gender',
@@ -101,11 +101,11 @@ export default function ProfileEdit() {
       rules: [
         {
           required: false,
-          message: 'Please select gender!',
-        },
+          message: 'Please select gender!'
+        }
       ],
       haveOption: true,
-      options: ['Male', 'Female', 'Other'],
+      options: ['Male', 'Female', 'Other']
 
     },
     {
@@ -114,10 +114,10 @@ export default function ProfileEdit() {
       rules: [
         {
           required: true,
-          message: 'Please input your phone number!',
-        },
+          message: 'Please input your phone number!'
+        }
       ],
-      haveOption: false,
+      haveOption: false
     },
     {
       name: 'Nationality',
@@ -125,17 +125,17 @@ export default function ProfileEdit() {
       rules: [
         {
           type: 'string',
-          message: 'Must not contain numbers and special characters',
+          message: 'Must not contain numbers and special characters'
         },
         {
           required: true,
-          message: 'Please input your nationality!',
-        },
-      ],
+          message: 'Please input your nationality!'
+        }
+      ]
 
-    },
+    }
 
-  ];
+  ]
 
   return (
     <>
@@ -161,12 +161,12 @@ export default function ProfileEdit() {
               DOB: '',
               Gender: '',
               Nationality: '',
-              Address: '',
+              Address: ''
 
             }}
           />
         </Col>
       </Row>
     </>
-  );
+  )
 }

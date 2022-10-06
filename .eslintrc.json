@@ -4,21 +4,23 @@
         "es2021": true
     },
     "extends": [
-        "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "standard-with-typescript"
     ],
     "overrides": [
     ],
-    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module",
+        "project": "tsconfig.json"
     },
     "plugins": [
-        "react",
-        "@typescript-eslint"
+        "react"
     ],
     "rules": {
+        "@typescript-eslint/strict-boolean-expressions": "warn",
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/restrict-template-expressions": "off"
     }
+
 }

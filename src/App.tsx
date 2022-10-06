@@ -1,30 +1,30 @@
-import { CalendarOutlined, FileOutlined, PieChartOutlined, ProfileOutlined, PushpinOutlined, QuestionOutlined, UserOutlined } from '@ant-design/icons';
-import { Layout } from 'antd';
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import './App.css';
-import { AppHeader, AppSider } from './components';
-import { ApplicationContextProvider } from './contexts/applicationContext';
-import { UserContextProvider } from './contexts/user';
-import { Routes } from './routes';
+import { CalendarOutlined, FileOutlined, PieChartOutlined, ProfileOutlined, PushpinOutlined, QuestionOutlined, UserOutlined } from '@ant-design/icons'
+import { Layout } from 'antd'
+import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import './App.css'
+import { AppHeader, AppSider } from './components'
+import { ApplicationContextProvider } from './contexts/applicationContext'
+import { UserContextProvider } from './contexts/user'
+import { Routes } from './routes'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 const siderData = [
   { title: 'Dashboard', linkTo: '/s/', icon: <PieChartOutlined /> },
   {
     title: 'My Applications',
     linkTo: '/s/myapplications',
-    icon: <ProfileOutlined />,
+    icon: <ProfileOutlined />
   },
   { title: 'Documents', linkTo: '/s/docs', icon: <FileOutlined /> },
   { title: 'Calendar', linkTo: '/s/calendar', icon: <CalendarOutlined /> },
   { title: 'My Queries', linkTo: '/s/myqueries', icon: <QuestionOutlined /> },
   { title: 'Notices', linkTo: '/s/notices', icon: <PushpinOutlined /> },
-  { title: 'Profile', linkTo: '/s/profile', icon: <UserOutlined /> },
-];
+  { title: 'Profile', linkTo: '/s/profile', icon: <UserOutlined /> }
+]
 
-function App() {
+function App (): JSX.Element {
   return (
     <BrowserRouter basename="/ap-student">
       <UserContextProvider>
@@ -46,7 +46,7 @@ function App() {
       </UserContextProvider>
 
     </BrowserRouter >
-  );
+  )
 }
 
-export default App;
+export default App

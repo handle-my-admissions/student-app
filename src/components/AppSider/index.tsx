@@ -8,33 +8,33 @@
  * Written By : Tejas Ladhani
  */
 
-import React, { useContext, useState } from 'react';
-import { NotificationOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
-import './style.css';
-import { UserContext } from '../../contexts/user';
+import React, { useContext, useState } from 'react'
+import { NotificationOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
+import { Layout, Menu } from 'antd'
+import './style.css'
+import { UserContext } from '../../contexts/user'
 
-const { Sider } = Layout;
-const { SubMenu } = Menu;
+const { Sider } = Layout
+const { SubMenu } = Menu
 
-type appSiderPropType = {
-  data: {title:string, linkTo:string, icon: React.ReactNode}[],
-  haveSubMenu?:boolean,
-  isCollapsible?:boolean,
+interface appSiderPropType {
+  data: Array<{ title: string, linkTo: string, icon: React.ReactNode }>
+  haveSubMenu?: boolean
+  isCollapsible?: boolean
 }
-function AppSider({ data, haveSubMenu, isCollapsible }:appSiderPropType) {
-  const [collapsed, setCollapsed] = useState(false);
-  const {user} = useContext(UserContext);
-  let keyCounter = 1;
-  const onCollapse = (collapseState:boolean) => {
-    setCollapsed(collapseState);
-  };
-
-  if(user == undefined){
-    return <></>;
+function AppSider ({ data, haveSubMenu, isCollapsible }: appSiderPropType): JSX.Element {
+  const [collapsed, setCollapsed] = useState(false)
+  const { user } = useContext(UserContext)
+  let keyCounter = 1
+  const onCollapse = (collapseState: boolean): void => {
+    setCollapsed(collapseState)
   }
-  
+
+  if (user === undefined) {
+    return <></>
+  }
+
   return (
     <Sider
       width={210}
@@ -49,7 +49,8 @@ function AppSider({ data, haveSubMenu, isCollapsible }:appSiderPropType) {
         defaultOpenKeys={['sub1']}
         style={{ height: '100%', borderRight: 0 }}
       >
-        {haveSubMenu === true ? (
+        {haveSubMenu === true
+          ? (
           <SubMenu
             key="sub3"
             icon={<NotificationOutlined />}
@@ -60,10 +61,11 @@ function AppSider({ data, haveSubMenu, isCollapsible }:appSiderPropType) {
             <Menu.Item key="11">No. Of Students Increasing !</Menu.Item>
             <Menu.Item key="12">Notice Generated !</Menu.Item>
           </SubMenu>
-        ) : (
+            )
+          : (
 
           <></>
-        )}
+            )}
 
         {data.map((item) => (
           <Menu.Item key={keyCounter++} icon={item.icon}>
@@ -73,7 +75,7 @@ function AppSider({ data, haveSubMenu, isCollapsible }:appSiderPropType) {
         ))}
       </Menu>
     </Sider>
-  );
+  )
 }
 
-export default AppSider;
+export default AppSider

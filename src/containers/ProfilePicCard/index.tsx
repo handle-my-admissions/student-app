@@ -1,9 +1,9 @@
-import './style.css';
-import React from 'react';
-import { Avatar, Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import './style.css'
+import React from 'react'
+import { Avatar, Button } from 'antd'
+import { UserOutlined } from '@ant-design/icons'
 
-export default function ProfilePicCard() {
+export default function ProfilePicCard (): JSX.Element {
   return (
     <div className="ProfilePicCard">
       <div className="ProfileImg">
@@ -18,5 +18,5 @@ export default function ProfilePicCard() {
         </div>
       </div>
     </div>
-  );
+  )
 }

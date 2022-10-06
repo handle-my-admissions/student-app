@@ -7,21 +7,21 @@
  *
  * Written By : Tejas Ladhani
  */
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 import {
-  Row, Col, Layout, Typography, Steps,
-} from 'antd';
-import { DashboardCard } from '../../components';
-import './style.css';
-import { UserContext } from '../../contexts/user';
+  Row, Col, Layout, Typography, Steps
+} from 'antd'
+import { DashboardCard } from '../../components'
+import './style.css'
+import { UserContext } from '../../contexts/user'
 
-export default function DashBoard() {
-  const { user } = useContext(UserContext);
- 
-  const getUserName = () => {
-    const userPayLoad = user.idToken.payload;
-    return userPayLoad.name;
-  };
+export default function DashBoard (): JSX.Element {
+  const { user } = useContext(UserContext)
+
+  const getUserName = (): string => {
+    const userPayLoad = user.idToken.payload
+    return userPayLoad.name
+  }
 
   return (
     <div className="SDashboard" style={{ marginTop: '1.5em' }}>
@@ -115,5 +115,5 @@ export default function DashBoard() {
         </Row>
       </Layout>
     </div>
-  );
+  )
 }

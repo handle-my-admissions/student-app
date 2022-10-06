@@ -5,17 +5,17 @@
  *
  * Written By: Tejas ladhani
  */
-import React from 'react';
-import './style.css';
-import { Typography } from 'antd';
-import { ArrowRightOutlined } from '@ant-design/icons';
+import React from 'react'
+import './style.css'
+import { Typography } from 'antd'
+import { ArrowRightOutlined } from '@ant-design/icons'
 
-type dashboardCardPropType = {
-  title: string;
-  subSpan: string[];
+interface dashboardCardPropType {
+  title: string
+  subSpan: string[]
 }
 
-export default function DashboardCard({ title, subSpan }: dashboardCardPropType) {
+export default function DashboardCard ({ title, subSpan }: dashboardCardPropType): JSX.Element {
   return (
     <div className="SDashboard_Card">
       <div className="SDashboard_Card_Title">
@@ -34,5 +34,5 @@ export default function DashboardCard({ title, subSpan }: dashboardCardPropType)
         </div>
       </div>
     </div>
-  );
+  )
 }

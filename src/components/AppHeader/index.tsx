@@ -1,12 +1,12 @@
-import './style.css';
-import React, { useContext } from 'react';
-import { Layout } from 'antd';
-import UserDropdown from '../UserDropdown';
-import { UserContext } from '../../contexts/user';
+import './style.css'
+import React, { useContext } from 'react'
+import { Layout } from 'antd'
+import UserDropdown from '../UserDropdown'
+import { UserContext } from '../../contexts/user'
 
-function AppHeader() {
-  const { Header } = Layout;
-  const { user } = useContext(UserContext);
+export default function AppHeader (): JSX.Element {
+  const { Header } = Layout
+  const { user } = useContext(UserContext)
 
   return (
     <Header className="site-layout-background Header">
@@ -20,7 +20,5 @@ function AppHeader() {
         </div>
       </div>
     </Header>
-  );
+  )
 }
-
-export default AppHeader;
