@@ -16,7 +16,7 @@ export default function ProfileDisplay (): JSX.Element {
   useEffect(() => {
     const config = {
       method: 'get',
-      url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items?email=${user.idToken.payload.email}`,
+      url: `${process.env.REACT_APP_API_BASE_URL}/items?email=${user.idToken.payload.email}`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`
       }
