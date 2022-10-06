@@ -1,6 +1,7 @@
 {
   "name": "student-app",
   "version": "1.0.1",
+  "homepage": "https://handle-my-admissions.web.app/ap-student/",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

@@ -10,6 +10,8 @@
 ## 🎊 student-app
 "student-app" is an application that severs "applicant" users of Handle My Admission.
 
+hosted link : https://handle-my-admissions.web.app/ap-student
+
 Note: This repository is the TypeScript version of the Old Codebase (https://github.com/admission-portal/ap-student) which is now being deprecated, and will not be maintained further.
 
 ## 💥 Introduction to Handle My Admission
