@@ -1,7 +1,7 @@
-import React from 'react';
-import { Typography, Divider } from 'antd';
+import React from 'react'
+import { Typography, Divider } from 'antd'
 
-export default function PageHeader({ title }:{title:string}) {
+export default function PageHeader ({ title }: { title: string }): JSX.Element {
   return (
     <>
       <Typography.Title
@@ -12,5 +12,5 @@ export default function PageHeader({ title }:{title:string}) {
       </Typography.Title>
       <Divider />
     </>
-  );
+  )
 }

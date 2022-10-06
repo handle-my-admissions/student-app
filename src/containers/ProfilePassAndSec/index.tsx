@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-export default function ProfilePassAndSec() {
+export default function ProfilePassAndSec (): JSX.Element {
   return (
     <div>
       Passwords and security.
     </div>
-  );
+  )
 }

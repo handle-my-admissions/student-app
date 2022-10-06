@@ -1,29 +1,27 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-bind */
-import { Button, message } from 'antd';
-import React, { useContext } from 'react';
-import axios from 'axios';
-import './style.css';
-import { UserContext } from '../../contexts/user';
+import { Button, message } from 'antd'
+import React, { useContext } from 'react'
+import axios from 'axios'
+import './style.css'
+import { UserContext } from '../../contexts/user'
 
 /**
  *
  * @param {String} src
  * @returns {Promise}
  */
-const loadScript = (src: any) => new Promise((resolve) => {
-  const script = document.createElement('script');
-  script.src = src;
+const loadScript = async (src: any): Promise<any> => await new Promise((resolve) => {
+  const script = document.createElement('script')
+  script.src = src
   script.onload = () => {
-    resolve(true);
-  };
+    resolve(true)
+  }
   script.onerror = () => {
-    resolve(false);
-  };
-  document.body.appendChild(script);
-});
+    resolve(false)
+  }
+  document.body.appendChild(script)
+})
 
-const isDevEnvironment = document.domain === 'localhost';
+const isDevEnvironment = document.domain === 'localhost'
 /**
  *
  * @param {Number} amount
@@ -36,75 +34,75 @@ const isDevEnvironment = document.domain === 'localhost';
  * @param {props} object --will have amount and application_id in it
  * @returns {Node} -- UI DIV
  */
-type paymentButtonPropType = {
-  amount: number,
-  applicationId: string,
+interface paymentButtonPropType {
+  amount: number
+  applicationId: string
   setPaymentInfo: React.Dispatch<React.SetStateAction<{
-    order_id: string,
+    order_id: string
     payment_id: string
   }>>
 
 }
-export default function PaymentButton({
+export default function PaymentButton ({
   amount,
   applicationId,
-  setPaymentInfo,
-}: paymentButtonPropType) {
-  const { user } = useContext(UserContext);
+  setPaymentInfo
+}: paymentButtonPropType): JSX.Element {
+  const { user } = useContext(UserContext)
 
-  const UserMetaData = user.idToken.payload;
+  const UserMetaData = user.idToken.payload
 
-  function getOrderId(amnt: number, appId: string, email: string) {
+  function getOrderId (amnt: number, appId: string, email: string): any {
     const data = JSON.stringify({
       amount: amnt * 100,
-      id: `${appId}_${email}`,
-    });
+      id: `${appId}_${email}`
+    })
 
     const config = {
       method: 'post',
       url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/payment',
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken} `,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      data,
-    };
+      data
+    }
 
     axios(config)
       .then((response) => {
-        sessionStorage.setItem('order_id', response.data.id);
-        return response.data.id;
+        sessionStorage.setItem('order_id', response.data.id)
+        return response.data.id
       })
       .catch((err) => {
-        message.error(err.message);
-      });
+        message.error(err.message)
+      })
   }
 
-  async function displayRazorpay() {
+  async function displayRazorpay (): Promise<any> {
     const res = await loadScript(
-      'https://checkout.razorpay.com/v1/checkout.js',
-    );
+      'https://checkout.razorpay.com/v1/checkout.js'
+    )
 
     if (!res) {
       // Razorpay SDK failed to load.
-      message.error('please check your internet connectivity.');
-      return;
+      message.error('please check your internet connectivity.')
+      return
     }
     // !order id is not getting saved in DB (but getting in RAZORPAY db)
-    const odi = sessionStorage.getItem('order_id');
+    const odi = sessionStorage.getItem('order_id')
     const options = {
       key: isDevEnvironment ? 'rzp_test_NRrhuDEU5IeRQx' : 'PRODUCTION_KEY',
       currency: 'INR',
       amount: amount * 100,
       order_id: getOrderId(amount, applicationId, UserMetaData.email),
       description: 'Thank you for paying the Fees.You will hear from us soon !',
-      handler(response: any) {
+      handler (response: any) {
         // !DIsCUSS THIS
 
         setPaymentInfo({
-          order_id: odi ? odi : '',
-          payment_id: response.razorpay_payment_id,
-        });
+          order_id: (odi ?? ''),
+          payment_id: response.razorpay_payment_id
+        })
         // console.log(props.PaymentInfo)
       },
       prefill: {
@@ -112,23 +110,23 @@ export default function PaymentButton({
         contact:
           UserMetaData !== null
             ? parseInt(UserMetaData.phone_number.substring(3, 13), 10)
-            : '',
+            : ''
       },
       readonly: {
         email: true,
-        contact: true,
-      },
-    };
-    const paymentObject = new (window as any).Razorpay(options);
-    paymentObject.open();
+        contact: true
+      }
+    }
+    const paymentObject = new (window as any).Razorpay(options)
+    paymentObject.open()
   }
   return (
     <div>
-      <Button type="primary" onClick={displayRazorpay}>
+      <Button type="primary" onClick={() => { displayRazorpay() }}>
         Pay
         {' '}
         {amount}
       </Button>
     </div>
-  );
+  )
 }

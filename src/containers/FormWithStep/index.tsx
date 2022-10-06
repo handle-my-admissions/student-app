@@ -1,68 +1,66 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/prop-types */
-import React, { useState, useEffect, useContext } from 'react';
-import './style.css';
+import React, { useState, useEffect, useContext } from 'react'
+import './style.css'
 import {
-  Steps, Button, message, Row, Col,
-} from 'antd';
-import axios from 'axios';
-import PaymentButton from '../../components/PaymentButton';
-import { UserContext } from '../../contexts/user';
+  Steps, Button, message, Row, Col
+} from 'antd'
+import axios from 'axios'
+import PaymentButton from '../../components/PaymentButton'
+import { UserContext } from '../../contexts/user'
 
-const { Step } = Steps;
+const { Step } = Steps
 
 const steps = [
   {
-    title: 'Personal Details',
+    title: 'Personal Details'
   },
   {
-    title: 'School Details',
+    title: 'School Details'
   },
   {
-    title: 'Entrance Exam',
+    title: 'Entrance Exam'
   },
   {
-    title: 'Ed Details',
+    title: 'Ed Details'
   },
   {
-    title: 'Documents Upload',
+    title: 'Documents Upload'
   },
   {
-    title: 'Payment',
-  },
-];
+    title: 'Payment'
+  }
+]
 
-export default function FormWithStep({ application }: { application: any }) {
-  const { user } = useContext(UserContext);
+export default function FormWithStep ({ application }: { application: any }): JSX.Element {
+  const { user } = useContext(UserContext)
   //   console.log("from form step", application);
-  const [current, setCurrent] = React.useState(0);
+  const [current, setCurrent] = React.useState(0)
 
-  const next = () => {
-    setCurrent(current + 1);
-  };
+  const next = (): void => {
+    setCurrent(current + 1)
+  }
 
-  const prev = () => {
-    setCurrent(current - 1);
-  };
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+  const prev = (): void => {
+    setCurrent(current - 1)
+  }
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+  }
 
   // !check this
-  const [ClickedOnEdit] = useState(false);
-  const { ApplicationID } = application;
-  const fields = application.GlobalLabels;
+  const [ClickedOnEdit] = useState(false)
+  const { ApplicationID } = application
+  const fields = application.GlobalLabels
 
-  const PersonalDetails = fields['Personal Details'];
-  const SchoolDetails = fields['Education/School Details'];
-  const EntranceExam = fields['Entrance Exam'];
-  const EdDetails = fields['Ed-Level Details'];
-  const DocumentUploads = fields['Document Uploads'];
+  const PersonalDetails = fields['Personal Details']
+  const SchoolDetails = fields['Education/School Details']
+  const EntranceExam = fields['Entrance Exam']
+  const EdDetails = fields['Ed-Level Details']
+  const DocumentUploads = fields['Document Uploads']
 
   const [PaymentInfo, setPaymentInfo] = useState({
     order_id: '',
-    payment_id: '',
-  });
+    payment_id: ''
+  })
   const [formData, setFormData] = useState({
     ApplicationID,
     PersonalDetails,
@@ -70,70 +68,70 @@ export default function FormWithStep({ application }: { application: any }) {
     EntranceExam,
     EdDetails,
     DocumentUploads,
-    PaymentInfo,
-  });
+    PaymentInfo
+  })
 
   // console.log(formData.PersonalDetails);
-  const userEmail = user.idToken.payload.email;
-  const getTodaysDate = () => {
-    const timestamp = Date.now();
-    return timestamp;
-  };
+  const userEmail = user.idToken.payload.email
+  const getTodaysDate = (): number => {
+    const timestamp = Date.now()
+    return timestamp
+  }
 
   // get the submitted data from the database if present.
-  const getSavedData = () => {
+  const getSavedData = (): void => {
     const config = {
       method: 'get',
       url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/Get_Submitted_Applications?id=${ApplicationID}_${user.idToken.payload.email}`,
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
-        'Content-Type': 'application/json',
-      },
-    };
+        'Content-Type': 'application/json'
+      }
+    }
     axios(config)
       .then((response) => {
         // this is the submission data if it exists
-        const preliminaryData = response.data.body;
-        setFormData(preliminaryData.Item.submission[0].submissiondata);
+        const preliminaryData = response.data.body
+        setFormData(preliminaryData.Item.submission[0].submissiondata)
       })
       .catch(() => {
         // error handling
-        message.error('Something went wrong, please try again later.');
-      });
-  };
+        message.error('Something went wrong, please try again later.')
+      })
+  }
 
-  const ApiFunction = (val: any) => {
+  const ApiFunction = (val: any): void => {
     const data = {
       applicationid: val.ApplicationID,
       email: userEmail,
       submission: {
         submissiontimestamp: getTodaysDate(),
-        submissiondata: val,
-      },
-    };
+        submissiondata: val
+      }
+    }
 
     const config = {
       method: 'put',
       url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/putapplication',
       headers: {
         Authorization: `Bearer ${user.idToken.jwtToken}`,
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      data,
-    };
+      data
+    }
 
     axios(config)
       .then(() => {
-        message.success('saved!');
+        message.success('saved!')
       })
       .catch(() => {
-        message.error('You offline ?');
-      });
-  };
+        message.error('You offline ?')
+      })
+  }
 
   useEffect(() => {
-    getSavedData();
-  }, []);
+    getSavedData()
+  }, [])
 
   return (
     <div className="FormWithSteps">
@@ -147,9 +145,9 @@ export default function FormWithStep({ application }: { application: any }) {
           <Col span={24}>
             <form autoComplete="off" onSubmit={onSubmit} id="DetailForm">
               {/* Personal Details */}
-              {current === 0
-                && PersonalDetails.map((item: any, index: number) => (
-                  <div className="personalDetails">
+              {current === 0 &&
+                PersonalDetails.map((item: any, index: number) => (
+                  <div className="personalDetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -163,11 +161,11 @@ export default function FormWithStep({ application }: { application: any }) {
                             : formData.PersonalDetails[0][index].value
                         }
                         onChange={(e) => {
-                          PersonalDetails[index].value = e.target.value;
+                          PersonalDetails[index].value = e.target.value
                           setFormData({
                             ...formData,
-                            PersonalDetails: [{ ...PersonalDetails }],
-                          });
+                            PersonalDetails: [{ ...PersonalDetails }]
+                          })
                         }}
                         required
                         disabled={ClickedOnEdit}
@@ -181,11 +179,11 @@ export default function FormWithStep({ application }: { application: any }) {
                             : formData.PersonalDetails[0][index].value
                         }
                         onChange={(e) => {
-                          PersonalDetails[index].value = e.target.value;
+                          PersonalDetails[index].value = e.target.value
                           setFormData({
                             ...formData,
-                            PersonalDetails: [{ ...PersonalDetails }],
-                          });
+                            PersonalDetails: [{ ...PersonalDetails }]
+                          })
                         }}
                         required
                         disabled={ClickedOnEdit}
@@ -199,9 +197,9 @@ export default function FormWithStep({ application }: { application: any }) {
                 ))}
 
               {/* School Details */}
-              {current === 1
-                && SchoolDetails.map((item: any, index: number) => (
-                  <div className="schooldetails">
+              {current === 1 &&
+                SchoolDetails.map((item: any, index: number) => (
+                  <div className="schooldetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -214,11 +212,11 @@ export default function FormWithStep({ application }: { application: any }) {
                           : formData.SchoolDetails[0][index].value
                       }
                       onChange={(e) => {
-                        SchoolDetails[index].value = e.target.value;
+                        SchoolDetails[index].value = e.target.value
                         setFormData({
                           ...formData,
-                          SchoolDetails: [{ ...SchoolDetails }],
-                        });
+                          SchoolDetails: [{ ...SchoolDetails }]
+                        })
                       }}
                       required
                       disabled={ClickedOnEdit}
@@ -227,9 +225,9 @@ export default function FormWithStep({ application }: { application: any }) {
                 ))}
 
               {/* Entrance Exam */}
-              {current === 2
-                && EntranceExam.map((item: any, index: number) => (
-                  <div className="entranceExamDetails">
+              {current === 2 &&
+                EntranceExam.map((item: any, index: number) => (
+                  <div className="entranceExamDetails" key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -243,11 +241,11 @@ export default function FormWithStep({ application }: { application: any }) {
                             : formData.EntranceExam[0][index].value
                         }
                         onChange={(e) => {
-                          EntranceExam[index].value = e.target.value;
+                          EntranceExam[index].value = e.target.value
                           setFormData({
                             ...formData,
-                            EntranceExam: [{ ...EntranceExam }],
-                          });
+                            EntranceExam: [{ ...EntranceExam }]
+                          })
                         }}
                         required
                         disabled={ClickedOnEdit}
@@ -261,11 +259,11 @@ export default function FormWithStep({ application }: { application: any }) {
                             : formData.PersonalDetails[0][index].value
                         }
                         onChange={(e) => {
-                          PersonalDetails[index].value = e.target.value;
+                          PersonalDetails[index].value = e.target.value
                           setFormData({
                             ...formData,
-                            PersonalDetails: [{ ...PersonalDetails }],
-                          });
+                            PersonalDetails: [{ ...PersonalDetails }]
+                          })
                         }}
                         required
                         disabled={ClickedOnEdit}
@@ -280,9 +278,9 @@ export default function FormWithStep({ application }: { application: any }) {
                 ))}
 
               {/* Education Details */}
-              {current === 3
-                && EdDetails.map((item: any, index: number) => (
-                  <div>
+              {current === 3 &&
+                EdDetails.map((item: any, index: number) => (
+                  <div key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -295,11 +293,11 @@ export default function FormWithStep({ application }: { application: any }) {
                           : formData.EdDetails[0][index].value
                       }
                       onChange={(e) => {
-                        EdDetails[index].value = e.target.value;
+                        EdDetails[index].value = e.target.value
                         setFormData({
                           ...formData,
-                          EdDetails: [{ ...EdDetails }],
-                        });
+                          EdDetails: [{ ...EdDetails }]
+                        })
                       }}
                       required
                       disabled={ClickedOnEdit}
@@ -308,9 +306,9 @@ export default function FormWithStep({ application }: { application: any }) {
                 ))}
 
               {/* Document Upload Details */}
-              {current === 4
-                && DocumentUploads.map((item: any, index: number) => (
-                  <div>
+              {current === 4 &&
+                DocumentUploads.map((item: any, index: number) => (
+                  <div key={index}>
                     <br />
                     {' '}
                     <label>{item.title}</label>
@@ -323,11 +321,11 @@ export default function FormWithStep({ application }: { application: any }) {
                           : formData.DocumentUploads[0][index].value
                       }
                       onChange={(e) => {
-                        DocumentUploads[index].value = e.target.value;
+                        DocumentUploads[index].value = e.target.value
                         setFormData({
                           ...formData,
-                          DocumentUploads: [{ ...DocumentUploads }],
-                        });
+                          DocumentUploads: [{ ...DocumentUploads }]
+                        })
                       }}
                       required
                       disabled={ClickedOnEdit}
@@ -352,8 +350,8 @@ export default function FormWithStep({ application }: { application: any }) {
           <Button
             type="primary"
             onClick={() => {
-              next();
-              ApiFunction({ ...formData, PaymentInfo });
+              next()
+              ApiFunction({ ...formData, PaymentInfo })
             }}
           >
             Next
@@ -363,7 +361,7 @@ export default function FormWithStep({ application }: { application: any }) {
           <Button
             type="primary"
             onClick={() => {
-              message.success('Processing complete!');
+              message.success('Processing complete!')
             }}
           >
             Submit Application
@@ -376,5 +374,5 @@ export default function FormWithStep({ application }: { application: any }) {
         )}
       </div>
     </div>
-  );
+  )
 }

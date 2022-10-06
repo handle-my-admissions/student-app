@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 import {
   EditFilled,
   SafetyCertificateFilled,
   SettingFilled,
-  UserOutlined,
-} from '@ant-design/icons';
-import { Layout, Tabs } from 'antd';
+  UserOutlined
+} from '@ant-design/icons'
+import { Layout, Tabs } from 'antd'
 import {
-  ProfileDisplay, ProfileEdit, ProfileOther, ProfilePassAndSec,
-} from '../../containers';
-import './style.css';
+  ProfileDisplay, ProfileEdit, ProfileOther, ProfilePassAndSec
+} from '../../containers'
+import './style.css'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 const studentProfileData = [
   { title: 'Profile', component: <ProfileDisplay />, icon: <UserOutlined /> },
   { title: 'Edit Profile', component: <ProfileEdit />, icon: <EditFilled /> },
   { title: 'Password & Security', component: <ProfilePassAndSec />, icon: <SafetyCertificateFilled /> },
-  { title: 'Other Settings', component: <ProfileOther />, icon: <SettingFilled /> },
-];
+  { title: 'Other Settings', component: <ProfileOther />, icon: <SettingFilled /> }
+]
 
-export default function Profile() {
+export default function Profile (): JSX.Element {
   return (
     <div className="Profile" style={{ marginTop: '2em' }}>
       <Layout>
@@ -41,5 +41,5 @@ export default function Profile() {
       </Layout>
 
     </div>
-  );
+  )
 }

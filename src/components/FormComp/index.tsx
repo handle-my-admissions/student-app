@@ -1,49 +1,48 @@
-/* eslint-disable react/prop-types */
 /**
  * TODO: Dynamic content
  * TODO: Make it reusable
  * TODO: save, edit & display.
  * Written By: Shrey Makwana
  */
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import {
   Form,
   Input,
   Select,
-  Button,
-} from 'antd';
-import './style.css';
+  Button
+} from 'antd'
+import './style.css'
 
-const { Option } = Select;
+const { Option } = Select
 
 // helper function
-function camelCase(str: string) {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase())).replace(/\s+/g, '');
+function camelCase (str: string): string {
+  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, (word, index) => (index === 0 ? word.toLowerCase() : word.toUpperCase())).replace(/\s+/g, '')
 }
-type formCompPropType = {
-  from?: string,
-  data: any,
-  apiFunc: any,
+interface formCompPropType {
+  from?: string
+  data: any
+  apiFunc: any
   formState: any
 }
-export default function FormComp({
-  data, apiFunc, formState,
-}: formCompPropType) {
-  const [form, setForm] = useState(formState);
+export default function FormComp ({
+  data, apiFunc, formState
+}: formCompPropType): JSX.Element {
+  const [form, setForm] = useState(formState)
 
-  // eslint-disable-next-line no-unused-vars
-  const handleFormChange = (event: React.FormEvent<any>) => {
+  const handleFormChange = (event: React.FormEvent<any>): void => {
     setForm({
-      ...form,
-    });
-  };
+      ...form
+    })
+  }
 
   return (
 
     <Form onFinish={apiFunc} id="ProfileForm">
       {
-        data.map((item: any) => (
+        data.map((item: any, index: number) => (
           <Form.Item
+            key={index}
             name={item.name}
             label={item.label}
             rules={item.rules}
@@ -56,14 +55,14 @@ export default function FormComp({
                   onChange={handleFormChange}
                   rows={item.isDescriptive ? 4 : 1}
                 />
-              )
+                )
               : (
                 <Select placeholder="select your gender" value={form.Gender} onChange={handleFormChange}>
                   {
-                    item.options.map((i: any) => <Option value={i}>{i}</Option>)
+                    item.options.map((i: any, index: number) => <Option key={index} value={i}>{i}</Option>)
                   }
                 </Select>
-              )}
+                )}
 
           </Form.Item>
         ))
@@ -76,5 +75,5 @@ export default function FormComp({
       </Form.Item>
     </Form>
 
-  );
+  )
 }

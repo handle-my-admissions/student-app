@@ -1,31 +1,30 @@
-/* eslint-disable react/prop-types */
 /*
 This is query card container,
 accepts querydata and renders a card with data.
 Written by Shrey Makwana
 */
-import React from 'react';
+import React from 'react'
 import {
-  Typography, Row, Col, Card,
-} from 'antd';
+  Typography, Row, Col, Card
+} from 'antd'
 
-type queryCardPropType = {
+interface queryCardPropType {
   queryCardData: {
-    subject: string,
+    subject: string
     querystatus: {
-      keyboardtype: any,
+      keyboardtype: any
       tag: any
-    },
-    querydate: any,
-    querytime: any,
-    queryid: string,
-    querydesc: string,
+    }
+    querydate: any
+    querytime: any
+    queryid: string
+    querydesc: string
   }
 }
 
-export default function QueryCard({ queryCardData }:queryCardPropType) {
-  console.log('Hello');
-  console.log(queryCardData);
+export default function QueryCard ({ queryCardData }: queryCardPropType): JSX.Element {
+  console.log('Hello')
+  console.log(queryCardData)
   return (
     <div className="querycard">
       <Card size="small">
@@ -70,5 +69,5 @@ export default function QueryCard({ queryCardData }:queryCardPropType) {
         </details>
       </Card>
     </div>
-  );
+  )
 }

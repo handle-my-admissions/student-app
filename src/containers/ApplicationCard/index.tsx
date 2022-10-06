@@ -1,21 +1,22 @@
-import { Typography } from 'antd';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Typography } from 'antd'
+import { Link } from 'react-router-dom'
 import {
   SubCard,
   ApplicationDownloadPanel,
-  ApplicationSteps,
-} from '../../components';
-import './style.css';
+  ApplicationSteps
+} from '../../components'
+import './style.css'
 
-type applicationCardPropsType = {
-  title: string,
-  subCardData: {
-    title: string,
-    subtitle: string,
-  }[],
+interface applicationCardPropsType {
+  title: string
+  subCardData: Array<{
+    title: string
+    subtitle: string
+  }>
 }
 
-export default function ApplicationCard({ title, subCardData }: applicationCardPropsType) {
+export default function ApplicationCard ({ title, subCardData }: applicationCardPropsType): JSX.Element {
   return (
     <div className="ApplicationCard">
       <div className="ApplicationCard_inner">
@@ -25,8 +26,8 @@ export default function ApplicationCard({ title, subCardData }: applicationCardP
           </Link>
         </div>
         <div className="ApplicationCard_Details_SubCards_Container">
-          {subCardData.map((data) => (
-            <SubCard data={data} />
+          {subCardData.map((data, index) => (
+            <SubCard data={data} key={index} />
           ))}
         </div>
 
@@ -40,5 +41,5 @@ export default function ApplicationCard({ title, subCardData }: applicationCardP
         </div>
       </div>
     </div>
-  );
+  )
 }

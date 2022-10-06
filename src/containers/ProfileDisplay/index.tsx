@@ -1,37 +1,36 @@
-/* eslint-disable eqeqeq */
 import {
-  Row, Col, Divider, Typography, Tag, Avatar, Spin, message,
-} from 'antd';
-import axios from 'axios';
-import React, { useEffect, useContext, useState } from 'react';
-import { UserOutlined } from '@ant-design/icons';
-import { UserContext } from '../../contexts/user';
+  Row, Col, Divider, Typography, Tag, Avatar, Spin, message
+} from 'antd'
+import axios from 'axios'
+import React, { useEffect, useContext, useState } from 'react'
+import { UserOutlined } from '@ant-design/icons'
+import { UserContext } from '../../contexts/user'
 
-import './style.css';
+import './style.css'
 
-export default function ProfileDisplay() {
-  const { user } = useContext(UserContext);
-  const [ProfileData, setProfileData] = useState<any>();
-  const [count] = useState(0);
+export default function ProfileDisplay (): JSX.Element {
+  const { user } = useContext(UserContext)
+  const [ProfileData, setProfileData] = useState<any>()
+  const [count] = useState(0)
 
   useEffect(() => {
     const config = {
       method: 'get',
       url: `https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/items?email=${user.idToken.payload.email}`,
       headers: {
-        Authorization: `Bearer ${user.idToken.jwtToken}`,
-      },
-    };
+        Authorization: `Bearer ${user.idToken.jwtToken}`
+      }
+    }
 
     axios(config)
       .then((response) => {
-        const temp = JSON.parse(response.data);
-        setProfileData(temp.body);
+        const temp = JSON.parse(response.data)
+        setProfileData(temp.body)
       })
       .catch(() => {
-        message.error('Something went wrong, please try again later.');
-      });
-  }, [count]);
+        message.error('Something went wrong, please try again later.')
+      })
+  }, [count])
 
   return (
     <>
@@ -51,37 +50,37 @@ export default function ProfileDisplay() {
             <Typography.Title level={5}>
               {' '}
               Name :
-              {ProfileData != undefined ? ProfileData.name : <Spin />}
+              {ProfileData !== undefined ? ProfileData.name : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
             <Typography.Title level={5}>
               Date Of Birth :
-              {ProfileData != undefined ? ProfileData.dob : <Spin />}
+              {ProfileData !== undefined ? ProfileData.dob : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
             <Typography.Title level={5}>
               Email :
-              {ProfileData != undefined ? ProfileData.email : <Spin />}
+              {ProfileData !== undefined ? ProfileData.email : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
             <Typography.Title level={5}>
               Gender :
-              {ProfileData != undefined ? ProfileData.gender : <Spin />}
+              {ProfileData !== undefined ? ProfileData.gender : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
             <Typography.Title level={5}>
               Nationality :
-              {ProfileData != undefined ? ProfileData.nationality : <Spin />}
+              {ProfileData !== undefined ? ProfileData.nationality : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
             <Typography.Title level={5}>
               Phone Number :
-              {ProfileData != undefined ? ProfileData.phone : <Spin />}
+              {ProfileData !== undefined ? ProfileData.phone : <Spin />}
             </Typography.Title>
           </div>
           <div className="ProfileDataRender">
@@ -95,5 +94,5 @@ export default function ProfileDisplay() {
         </Col>
       </Row>
     </>
-  );
+  )
 }

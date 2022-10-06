@@ -1,9 +1,9 @@
-import { Divider, Typography } from 'antd';
-import React from 'react';
-import './style.css';
-import { ViewNotices } from '../../containers';
+import { Divider, Typography } from 'antd'
+import React from 'react'
+import './style.css'
+import { ViewNotices } from '../../containers'
 
-export default function Notices() {
+export default function Notices (): JSX.Element {
   return (
     <div className="Notices">
       {/* <PageHeader title="Notices" /> */}
@@ -16,5 +16,5 @@ export default function Notices() {
       <Divider />
       <ViewNotices />
     </div>
-  );
+  )
 }

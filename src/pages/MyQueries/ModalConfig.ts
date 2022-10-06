@@ -5,10 +5,10 @@ const data = [
     rules: [
       {
         required: true,
-        message: 'Please input the Subject !',
-      },
+        message: 'Please input the Subject !'
+      }
     ],
-    haveOption: false,
+    haveOption: false
 
   },
   {
@@ -17,13 +17,13 @@ const data = [
     rules: [
       {
         required: true,
-        message: 'Please input the Description !',
-      },
+        message: 'Please input the Description !'
+      }
     ],
     haveOption: false,
-    isDescriptive: true,
+    isDescriptive: true
 
-  },
-];
+  }
+]
 
-export default data;
+export default data

@@ -5,30 +5,30 @@
  * Flow: MyApplications -> ApplicationCard -> other small components.
  * Written By: Tejas Ladhani
  */
-import './style.css';
-import React, { useEffect, useState, useContext } from 'react';
+import './style.css'
+import React, { useEffect, useState, useContext } from 'react'
 import {
-  Layout, Row, Col, Typography, Tabs, Spin, message,
-} from 'antd';
-import axios from 'axios';
-import { ApplicationCard } from '../../containers';
-import { ApplicationContext } from '../../contexts/applicationContext';
-import { UserContext } from '../../contexts/user';
+  Layout, Row, Col, Typography, Tabs, Spin, message
+} from 'antd'
+import axios from 'axios'
+import { ApplicationCard } from '../../containers'
+import { ApplicationContext } from '../../contexts/applicationContext'
+import { UserContext } from '../../contexts/user'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
-type applicationCardDataType = {
-  ApplicationID: string,
-  title: string,
-  fees: string,
-  lastDate: string,
-  subCard: {
-    title: string,
-    subtitle: string,
-  }[],
-  downloadPanelData: any[],
+type applicationCardDataType = Array<{
+  ApplicationID: string
+  title: string
+  fees: string
+  lastDate: string
+  subCard: Array<{
+    title: string
+    subtitle: string
+  }>
+  downloadPanelData: any[]
   stepsData: any[]
-}[]
+}>
 
 const ApplicationCardData = [
   {
@@ -40,44 +40,44 @@ const ApplicationCardData = [
       { title: 'Application No.', subtitle: '...' },
       { title: 'Application Fee', subtitle: '...' },
       { title: 'Last Date', subtitle: '...' },
-      { title: 'Payment Mode', subtitle: '...' },
+      { title: 'Payment Mode', subtitle: '...' }
     ],
     downloadPanelData: [],
-    stepsData: [],
-  },
-];
+    stepsData: []
+  }
+]
 
-export default function MyApplications() {
-  const { user } = useContext(UserContext);
-  const [count] = useState(0);
-  const [applicationCardDetails, setApplicationCardDetails] = useState<applicationCardDataType>(ApplicationCardData);
-  const { setApplicationDetails } = useContext(ApplicationContext);
-  let ApplicationCardDataV1 = [];
+export default function MyApplications (): JSX.Element {
+  const { user } = useContext(UserContext)
+  const [count] = useState(0)
+  const [applicationCardDetails, setApplicationCardDetails] = useState<applicationCardDataType>(ApplicationCardData)
+  const { setApplicationDetails } = useContext(ApplicationContext)
+  let ApplicationCardDataV1 = []
 
   useEffect(() => {
     const config = {
       method: 'get',
       url: 'https://0icg981cjj.execute-api.us-east-1.amazonaws.com/d1/applications',
       headers: {
-        Authorization: user.idToken.jwtToken,
-      },
-    };
+        Authorization: user.idToken.jwtToken
+      }
+    }
 
     axios(config)
       .then((response) => {
-        ApplicationCardDataV1 = response.data.Items;
-        setApplicationCardDetails(ApplicationCardDataV1);
+        ApplicationCardDataV1 = response.data.Items
+        setApplicationCardDetails(ApplicationCardDataV1)
         // console.log(ApplicationCardDataV1);
-        setApplicationDetails(ApplicationCardDataV1);
+        setApplicationDetails(ApplicationCardDataV1)
         // !check
         // ApplicationCardDataV1.map((item) => {
         //   // console.log(item["GlobalLabels"]["Payment Modes"].map(item => item.title));
         // });
       })
       .catch(() => {
-        message.error('Something went wrong, please try again later.');
-      });
-  }, [count]);
+        message.error('Something went wrong, please try again later.')
+      })
+  }, [count])
 
   return (
     <div className="myApplications" style={{ marginTop: '1.5em' }}>
@@ -96,32 +96,34 @@ export default function MyApplications() {
             </div>
           </Col>
           <Col span={24}>
-            <Tabs defaultActiveKey="1" onChange={() => { }}>
+            <Tabs defaultActiveKey="1" onChange={() => { /** */ }}>
               <TabPane
                 tab={`${applicationCardDetails.length} Applications(s) open`}
                 key="1"
               >
-                {applicationCardDetails.length < 2 ? (
+                {applicationCardDetails.length < 2
+                  ? (
                   <Spin />
-                ) : (
-                  applicationCardDetails.map((data) => (
-                    <ApplicationCard
-                      key={data.ApplicationID}
-                      title={data.title}
-                      subCardData={[
-                        {
-                          title: 'Application No.',
-                          subtitle: data.ApplicationID,
-                        },
-                        { title: 'Application Fee', subtitle: data.fees },
-                        { title: 'Last Date', subtitle: data.lastDate },
-                        { title: 'Payment Mode', subtitle: 'online' },
-                      ]}
-                    // downloadPanelData={data.downloadPanelData}
-                    // stepsData={data.stepsData}
-                    />
-                  ))
-                )}
+                    )
+                  : (
+                      applicationCardDetails.map((data) => (
+                      <ApplicationCard
+                        key={data.ApplicationID}
+                        title={data.title}
+                        subCardData={[
+                          {
+                            title: 'Application No.',
+                            subtitle: data.ApplicationID
+                          },
+                          { title: 'Application Fee', subtitle: data.fees },
+                          { title: 'Last Date', subtitle: data.lastDate },
+                          { title: 'Payment Mode', subtitle: 'online' }
+                        ]}
+                      // downloadPanelData={data.downloadPanelData}
+                      // stepsData={data.stepsData}
+                      />
+                      ))
+                    )}
               </TabPane>
               <TabPane tab="0 Application(s) completed" key="2">
                 Completed Applications
@@ -131,5 +133,5 @@ export default function MyApplications() {
         </Row>
       </Layout>
     </div>
-  );
+  )
 }

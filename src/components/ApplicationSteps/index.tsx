@@ -2,15 +2,15 @@
  * TODO: dynamic Steps
  * Written by :Tejas Ladhani
  */
-import React from 'react';
-import { Steps } from 'antd';
+import React from 'react'
+import { Steps } from 'antd'
 
-export default function ApplicationSteps() {
+export default function ApplicationSteps (): JSX.Element {
   return (
     <Steps
       type="navigation"
       current={1}
-      onChange={() => {}}
+      onChange={() => { /** */ }}
       size="small"
       className="ApplicationSteps"
     >
@@ -19,5 +19,5 @@ export default function ApplicationSteps() {
       <Steps.Step status="wait" icon="" title="Documents" />
       <Steps.Step status="wait" icon={<div />} title="Payment" />
     </Steps>
-  );
+  )
 }

@@ -1,16 +1,14 @@
-import './style.css';
+import './style.css'
+import React, { useContext } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom'
+import { UserContext } from '../../contexts/user'
 
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from '../../contexts/user';
+export default function Landing (): JSX.Element {
+  const navigate = useNavigate()
+  const { user } = useContext(UserContext)
 
+  if (user) return <Navigate to="adm/" />
 
-export default function Landing() {
-  const navigate = useNavigate();
-  const {user} =useContext(UserContext);
-
-  if(user) return <Navigate to="adm/" />
-  
   return (
     <div className="Landing">
       <section className="showcase">
@@ -32,5 +30,5 @@ export default function Landing() {
         </div>
       </section>
     </div>
-  );
+  )
 }
