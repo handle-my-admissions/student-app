@@ -1,4 +1,4 @@
-![Handle My Admission](https://raw.githubusercontent.com/admission-portal/.github/main/ap-student.gif)
+![Handle My Admission](https://raw.githubusercontent.com/admission-portal/.github/main/student-app.gif)
 
 <p align="center">
 <img src="https://img.shields.io/github/license/admission-portal/student" />
@@ -7,8 +7,8 @@
 
 <hr/>
 
-## 🎊 student
-"student" is an application that severs "applicant" users of Handle My Admission.
+## 🎊 student-app
+"student-app" is an application that severs "applicant" users of Handle My Admission.
 
 Note: This repository is the TypeScript version of the Old Codebase (https://github.com/admission-portal/ap-student) which is now being deprecated, and will not be maintained further.
 
