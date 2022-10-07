@@ -1,7 +1,7 @@
-![Handle My Admission](https://raw.githubusercontent.com/admission-portal/.github/main/student-app.gif)
+![Handle My Admission](https://raw.githubusercontent.com/handle-my-admissions/.github/main/student-app.gif)
 
 <p align="center">
-<img src="https://img.shields.io/github/license/admission-portal/student" />
+<img src="https://img.shields.io/github/license/handle-my-admissions/student-app" />
 <img src="https://img.shields.io/badge/Author-Tejas_Ladhani-yellow" />
 </p>
 
@@ -12,7 +12,7 @@
 
 hosted link : https://handle-my-admissions.web.app/ap-student
 
-Note: This repository is the TypeScript version of the Old Codebase (https://github.com/admission-portal/ap-student) which is now being deprecated, and will not be maintained further.
+Note: This repository is the TypeScript version of the Old Codebase (https://github.com/handle-my-admissions/ap-student) which is now being deprecated, and will not be maintained further.
 
 ## 💥 Introduction to Handle My Admission
 
@@ -42,7 +42,7 @@ That's pretty easy. To ensure that you are able to install everything properly, 
 We will first start with setting up the Local Project Environment:
 
 ```sh
-git clone https://github.com/admission-portal/student-app.git
+git clone https://github.com/handle-my-admissions/student-app.git
 ```
 
 ```sh
